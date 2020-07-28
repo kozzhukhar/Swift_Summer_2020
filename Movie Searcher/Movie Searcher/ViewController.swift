@@ -24,7 +24,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         field.delegate = self
     }
 
-    // Field
+    // Поля
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchMovies()
         return true
@@ -42,39 +42,39 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         movies.removeAll()
 
         URLSession.shared.dataTask(with: URL(string: "https://www.omdbapi.com/?apikey=3aea79ac&s=\(query)&type=movie")!,
-                                   completionHandler: { data, response, error in
+             completionHandler: { data, response, error in
 
-                                    guard let data = data, error == nil else {
-                                        return
-                                    }
+                guard let data = data, error == nil else {
+                    return
+                }
 
-                                    // Convert
-                                    var result: MovieResult?
-                                    do {
-                                        result = try JSONDecoder().decode(MovieResult.self, from: data)
-                                    }
-                                    catch {
-                                        print("error")
-                                    }
+               
+                var result: MovieResult?
+                do {
+                    result = try JSONDecoder().decode(MovieResult.self, from: data)
+                }
+                catch {
+                    print("error")
+                }
 
-                                    guard let finalResult = result else {
-                                        return
-                                    }
+                guard let finalResult = result else {
+                    return
+                }
 
-                                    // Update our movies array
-                                    let newMovies = finalResult.Search
-                                    self.movies.append(contentsOf: newMovies)
+                // Обновление массива фильмов
+                let newMovies = finalResult.Search
+                self.movies.append(contentsOf: newMovies)
 
-                                    // Refresh our table
-                                    DispatchQueue.main.async {
-                                        self.table.reloadData()
-                                    }
+                // Обновление таблицы
+                DispatchQueue.main.async {
+                    self.table.reloadData()
+                }
 
         }).resume()
 
     }
 
-    // Table
+    // Таблица
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
