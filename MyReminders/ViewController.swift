@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func didTapAdd() {
-        //Добавление напоминания
+        // Добавление напоминания
         guard let vc = storyboard?.instantiateViewController(identifier: "add") as? AddViewController else {
             return
         }
@@ -57,10 +57,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func didTapTest() {
-        // fire test notification
+        // Тестовое уведление
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { success, error in
             if success {
-                // schedule test
                 self.scheduleTest()
             }
             else if error != nil {
@@ -71,11 +70,11 @@ class ViewController: UIViewController {
 
     func scheduleTest() {
         let content = UNMutableNotificationContent()
-        content.title = "Hello World"
+        content.title = "Notification"
         content.sound = .default
-        content.body = "My long body. My long body. My long body. My long body. My long body. My long body. "
+        content.body = "This is the test of notification function in this app. If u see this evetything is alright "
 
-        let targetDate = Date().addingTimeInterval(10)
+        let targetDate = Date().addingTimeInterval(7)
         let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],from: targetDate),repeats: false)
 
         let request = UNNotificationRequest(identifier: "some_long_id", content: content, trigger: trigger)
@@ -116,8 +115,8 @@ extension ViewController: UITableViewDataSource {
         formatter.dateFormat = "MMM, dd, YYYY"
         cell.detailTextLabel?.text = formatter.string(from: date)
 
-        cell.textLabel?.font = UIFont(name: "Arial", size: 25)
-        cell.detailTextLabel?.font = UIFont(name: "Arial", size: 22)
+        cell.textLabel?.font = UIFont(name: "Comfortaa", size: 25)
+        cell.detailTextLabel?.font = UIFont(name: "Comfortaa", size: 22)
         return cell
     }
 
