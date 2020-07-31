@@ -2,7 +2,7 @@
 //  EntryViewController.swift
 //  MyToDoList
 //
-//  Created by Полина Кожухарь on 28.07.2020.
+//  Created by Полина Кожухарь on 30.07.2020.
 //  Copyright © 2020 Полина Кожухарь. All rights reserved.
 //
 
